@@ -1,4 +1,4 @@
-import type { EvidenceCard } from '../../data/mockData';
+import type { EvidenceCard } from '../../types';
 import { FileText, Clock, Eye, CheckCircle2 } from 'lucide-react';
 
 interface EvidenceSummaryProps {

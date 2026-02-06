@@ -1,4 +1,4 @@
-import type { StatCard as StatCardType } from '../../data/mockData';
+import type { StatCard as StatCardType } from '../../types';
 import { TrendingUp, TrendingDown, Folder, CheckCircle, Clock } from 'lucide-react';
 
 interface StatCardProps {

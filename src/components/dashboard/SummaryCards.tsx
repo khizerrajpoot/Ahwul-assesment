@@ -32,40 +32,19 @@ export const SummaryCards = ({ cards }: SummaryCardsProps) => {
         return (
           <div
             key={index}
-            className="bg-white border relative p-4 sm:p-6"
-            style={{
-              borderRadius: '10px',
-              opacity: 1,
-              borderWidth: '1px',
-              borderColor: '#E0E8ED',
-            }}
+            className="bg-white border border-[#E0E8ED] rounded-[10px] relative p-4 sm:p-6"
           >
             <div className="absolute top-2 right-2 sm:top-3 sm:right-3 md:top-4 md:right-4 lg:top-3 lg:right-3">
               <img
                 src={iconSrc}
                 alt={card.label}
-                style={{
-                
-                }}
                 className="lg:w-5 lg:h-5"
               />
             </div>
-            <div 
-              className="font-bold mb-1 lg:text-lg" 
-              style={{ 
-                color: '#1D3557',
-                // fontSize: 'clamp(22px, 6vw, 28px)',
-              }}
-            >
+            <div className="font-bold mb-1 lg:text-lg text-[#1D3557]">
               {card.value}
             </div>
-            <div 
-              className="lg:text-[10px]"
-              style={{ 
-                color: '#6B7280',
-                fontSize: 'clamp(12px, 3vw, 14px)',
-              }}
-            >
+            <div className="lg:text-[10px] text-[#6B7280]" style={{ fontSize: 'clamp(12px, 3vw, 14px)' }}>
               {card.label}
             </div>
           </div>

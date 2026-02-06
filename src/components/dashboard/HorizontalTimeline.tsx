@@ -75,30 +75,19 @@ export const HorizontalTimeline = ({ milestones, year = 2026 }: HorizontalTimeli
   return (
     <div className="bg-white rounded-lg border border-gray-200 p-3 sm:p-4 md:p-6">
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 sm:mb-6 gap-3 sm:gap-0">
-        <h2 className="text-base sm:text-lg font-semibold text-gray-900" style={{ color: '#1D3557' }}>Project Timeline</h2>
+        <h2 className="text-base sm:text-lg font-semibold text-[#1D3557]">Project Timeline</h2>
         <div className="flex items-center gap-2 px-2 sm:px-3 py-1 sm:py-1.5 border rounded-lg cursor-pointer hover:bg-gray-50" >
           <span className="text-xs sm:text-sm font-medium text-gray-700">{year}</span>
           <ChevronDown className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500" />
         </div>
       </div>
       
-      <div ref={timelineBarRef} className="relative mb-6 sm:mb-8" style={{ height: '12px', minHeight: '12px' }}>
-        <div 
-          className="absolute top-0 left-0 right-0"
-          style={{
-            height: '12px',
-            backgroundColor: '#F5F8FB',
-            borderRadius: '8px',
-          }}
-        />
-        
+      <div ref={timelineBarRef} className="relative mb-6 sm:mb-8 h-3 min-h-3">
+        <div className="absolute top-0 left-0 right-0 h-3 bg-[#F5F8FB] rounded-lg" />
         <div
-          className="absolute top-0 left-0"
+          className="absolute top-0 left-0 h-3 bg-[#1EA54E] rounded-lg"
           style={{
             width: `${progressWidth || (milestones.length > 1 ? (1 / (milestones.length - 1)) * 100 + 4 : 0)}%`,
-            height: '12px',
-            backgroundColor: '#1EA54E',
-            borderRadius: '8px',
           }}
         />
 
@@ -123,12 +112,9 @@ export const HorizontalTimeline = ({ milestones, year = 2026 }: HorizontalTimeli
               style={{ left: `${position}%` }}
             >
               <div
-                className="rounded-full"
-                style={{
-                  width: '9px',
-                  height: '9px',
-                  backgroundColor: milestone.status === 'completed' ? '#FFFFFF' : '#EF4444',
-                }}
+                className={`rounded-full w-[9px] h-[9px] ${
+                  milestone.status === 'completed' ? 'bg-white' : 'bg-[#EF4444]'
+                }`}
               />
             </div>
           );
@@ -150,19 +136,7 @@ export const HorizontalTimeline = ({ milestones, year = 2026 }: HorizontalTimeli
                 }}
               >
                 <div className="text-[10px] sm:text-[11px] md:text-[10px] lg:text-xs text-gray-500 mt-1 text-center whitespace-nowrap">{milestone.date}</div>
-                <div
-                  className="text-center px-1 sm:whitespace-nowrap md:whitespace-normal lg:whitespace-normal break-words capitalize"
-                  style={{
-                    fontFamily: 'inherit',
-                    fontWeight: 500,
-                    fontSize: '14px',
-                    lineHeight: '16px',
-                    letterSpacing: '0%',
-                    verticalAlign: 'middle',
-                    textTransform: 'capitalize',
-                    color: '#1D3557',
-                  }}
-                >
+                <div className="text-center px-1 sm:whitespace-nowrap md:whitespace-normal lg:whitespace-nowrap break-words capitalize text-sm lg:text-xs font-medium leading-4 text-[#1D3557]">
                   {milestone.title}
                 </div>
               </div>

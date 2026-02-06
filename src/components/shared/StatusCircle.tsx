@@ -15,10 +15,8 @@ const statusColors = {
 export const StatusCircle = ({ number, status }: StatusCircleProps) => {
   return (
     <div
-      className="rounded-full flex items-center justify-center text-white text-xs font-medium"
+      className="rounded-full flex items-center justify-center text-white text-xs font-medium w-6 h-6"
       style={{
-        width: '24px',
-        height: '24px',
         backgroundColor: statusColors[status],
       }}
     >

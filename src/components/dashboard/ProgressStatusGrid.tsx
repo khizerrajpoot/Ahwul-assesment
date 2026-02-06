@@ -33,31 +33,31 @@ export const ProgressStatusGrid = ({ categories }: ProgressStatusGridProps) => {
     return (
         <div className="bg-white rounded-lg border border-gray-200 p-4 sm:p-6">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-4">
-                <h2 className="text-lg font-semibold" style={{ color: '#1D3557' }}>Progress Status</h2>
+                <h2 className="text-lg font-semibold text-[#1D3557]">Progress Status</h2>
 
                 <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs">
                     <div className="flex items-center gap-1.5">
-                        <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#9CA3AF' }}></div>
+                        <div className="w-3 h-3 rounded-full bg-[#9CA3AF]"></div>
                         <span className="text-gray-600">Not Started</span>
                     </div>
                     <div className="flex items-center gap-1.5">
-                        <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#FBBF24' }}></div>
+                        <div className="w-3 h-3 rounded-full bg-[#FBBF24]"></div>
                         <span className="text-gray-600">In Progress</span>
                     </div>
                     <div className="flex items-center gap-1.5">
-                        <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#10B981' }}></div>
+                        <div className="w-3 h-3 rounded-full bg-[#10B981]"></div>
                         <span className="text-gray-600">Completed</span>
                     </div>
                     <div className="flex items-center gap-1.5">
-                        <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#3B82F6' }}></div>
+                        <div className="w-3 h-3 rounded-full bg-[#3B82F6]"></div>
                         <span className="text-gray-600">Partially Uploaded</span>
                     </div>
                     <div className="flex items-center gap-1.5">
-                        <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#1E40AF' }}></div>
+                        <div className="w-3 h-3 rounded-full bg-[#1E40AF]"></div>
                         <span className="text-gray-600">Fully Uploaded</span>
                     </div>
                     <div className="flex items-center gap-1.5">
-                        <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#EF4444' }}></div>
+                        <div className="w-3 h-3 rounded-full bg-[#EF4444]"></div>
                         <span className="text-gray-600">Delayed</span>
                     </div>
                 </div>
@@ -71,28 +71,13 @@ export const ProgressStatusGrid = ({ categories }: ProgressStatusGridProps) => {
                             className="flex-shrink-0 sm:flex-shrink w-[140px] sm:w-auto"
                         >
                             <div
-                                className="rounded-lg p-3 sm:p-4 flex flex-col cursor-pointer hover:opacity-90 transition-opacity"
-                                style={{
-                                    borderRadius: '10px',
-                                    backgroundColor: '#1D3557',
-                                    color: '#FFFFFF',
-                                    height: '80px',
-                                    minHeight: '110px',
-                                }}
+                                className="rounded-[10px] p-3 sm:p-4 flex flex-col cursor-pointer hover:opacity-90 transition-opacity bg-[#1D3557] text-white h-20 min-h-[110px]"
                                 onClick={() => handleCategoryClick(category.id)}
                             >
-                                <h3 className="text-[10px] sm:text-xs font-medium mb-2 sm:mb-3 flex-1 text-center" style={{ lineHeight: '16px', color: '#FFFFFF' }}>
+                                <h3 className="text-[10px] sm:text-xs font-medium mb-2 sm:mb-3 flex-1 text-center leading-4 text-white">
                                     {category.name}
                                 </h3>
-                                <div
-                                    className="px-2 py-1 mt-auto mx-auto"
-                                    style={{
-                                        backgroundColor: '#FFFFFF1A',
-                                        color: '#FFFFFF',
-                                        width: 'fit-content',
-                                        borderRadius: '10px',
-                                    }}
-                                >
+                                <div className="px-2 py-1 mt-auto mx-auto bg-[#FFFFFF1A] text-white w-fit rounded-[10px]">
                                     <span className="text-[10px] sm:text-xs font-medium">
                                         {category.progress === 100 ? '100%' : category.progress.toFixed(2) + '%'}
                                     </span>
@@ -113,22 +98,15 @@ export const ProgressStatusGrid = ({ categories }: ProgressStatusGridProps) => {
                             {category.subCategories.map((subCat) => (
                                 <div
                                     key={subCat.id}
-                                    className="bg-white rounded-lg border p-3 sm:p-4 flex flex-col"
-                                    style={{
-                                        borderColor: '#E0E8ED',
-                                        borderWidth: '1px',
-                                        minHeight: (subCat.name === 'Business Processes' || subCat.name === 'Governance Platforms') 
-                                            ? '49vh' 
+                                    className={`bg-white rounded-lg border border-[#E0E8ED] p-3 sm:p-4 flex flex-col justify-between ${
+                                        (subCat.name === 'Business Processes' || subCat.name === 'Governance Platforms') 
+                                            ? 'min-h-[49vh]' 
                                             : (subCat.name === 'Risk Management' || subCat.name === 'Business Continuity' || subCat.name === 'Service Quality' || subCat.name === 'Digital Channels' || subCat.name === 'Innovation' || subCat.name === 'Creative Solutions')
-                                            ? '24.5vh'
-                                            : '130px',
-                                        justifyContent: 'space-between',
-                                    }}
+                                            ? 'min-h-[24.5vh]'
+                                            : 'min-h-[130px]'
+                                    }`}
                                 >
-                                    <div className="text-[8px] sm:text-[9px] md:text-[10px] text-center" style={{ 
-                                        color: '#1D3557',
-                                        fontWeight: 400,
-                                    }}>
+                                    <div className="text-[8px] sm:text-[9px] md:text-[10px] text-center font-normal text-[#1D3557]">
                                         {subCat.name}
                                     </div>
                                     <div 

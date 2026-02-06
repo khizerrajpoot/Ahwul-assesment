@@ -1,75 +1,16 @@
-// Mock data for the application
-
-export interface StatCard {
-  title: string;
-  value: string;
-  change: string;
-  trend: 'up' | 'down';
-  icon: string;
-}
-
-export interface TimelineItem {
-  id: string;
-  title: string;
-  date: string;
-  status: 'completed' | 'in-progress' | 'upcoming';
-  description: string;
-}
-
-export interface Perspective {
-  id: string;
-  name: string;
-  progress: number;
-  color: string;
-}
-
-export interface Activity {
-  id: string;
-  type: string;
-  title: string;
-  timestamp: string;
-  user: string;
-}
-
-export interface EvidenceCard {
-  type: 'total' | 'in-progress' | 'under-review' | 'completed';
-  count: number;
-  label: string;
-}
-
-export interface Leader {
-  id: string;
-  name: string;
-  role: string;
-  avatar: string;
-  email: string;
-}
-
-export interface Document {
-  number: string;
-  name: string;
-  lead: string;
-  preparer: string;
-  date: string;
-  dueDate: string;
-  status: 'Approved' | 'Pending Review';
-}
-
-export interface TableHeader {
-  key: string;
-  label: string;
-  sortable?: boolean;
-}
-
-export interface TrackingItem {
-  id: string;
-  title: string;
-  status: 'pending' | 'in-progress' | 'completed' | 'blocked';
-  assignee: string;
-  dueDate: string;
-  priority: 'low' | 'medium' | 'high';
-  tags: string[];
-}
+import type {
+  StatCard,
+  TimelineItem,
+  Perspective,
+  Activity,
+  EvidenceCard,
+  Leader,
+  Document,
+  TableHeader,
+  TrackingItem,
+  CategoryDetail,
+  Comment,
+} from '../types';
 
 export const dashboardStats: StatCard[] = [
   {
@@ -102,7 +43,6 @@ export const dashboardStats: StatCard[] = [
   },
 ];
 
-// Summary cards matching the design
 export const summaryCards = [
   { value: '78.65%', label: 'Overall Progress', icon: 'cards1.svg' },
   { value: '95', label: 'Total Criteria', icon: 'cards2.svg' },
@@ -112,7 +52,6 @@ export const summaryCards = [
   { value: '258', label: 'Uploaded To DGA', icon: 'cards6.svg' },
 ];
 
-// Horizontal timeline milestones
 export const timelineMilestones = [
   { id: '1', date: 'Mar 17', title: 'Kickoff Workshop', status: 'completed' as const },
   { id: '2', date: 'March 18', title: 'Data Collection', status: 'completed' as const },
@@ -287,7 +226,6 @@ export const chartData = [
   { name: 'Jun', value: 78 },
 ];
 
-// Progress Status Categories
 export const progressCategories = [
   {
     id: '1',
@@ -593,7 +531,6 @@ export const progressCategories = [
   },
 ];
 
-// Top Performing Leaders
 export const topLeaders = [
   {
     id: '1',
@@ -618,7 +555,6 @@ export const topLeaders = [
   },
 ];
 
-// Recent Activities (matching design)
 export const recentActivitiesList = [
   {
     id: '1',
@@ -640,7 +576,6 @@ export const recentActivitiesList = [
   },
 ];
 
-// Monthly Performance Data
 export const monthlyPerformanceData = [
   { month: 'Jan', value: 45 },
   { month: 'Feb', value: 52 },
@@ -656,36 +591,13 @@ export const monthlyPerformanceData = [
   { month: 'Dec', value: 80 },
 ];
 
-// Category Details Data
-export interface CategoryDetail {
-  id: string;
-  name: string;
-  categoryTag: string;
-  description: string;
-  progress: number;
-  evidence: {
-    total: number;
-    underReview: number;
-    inProgress: number;
-    completed: number;
-  };
-  overview: {
-    objective: string;
-    implementationRequirements: string;
-    evidenceDocuments: string;
-    relatedRegulations: string;
-    scope: string;
-  };
-  leaders: Leader[];
-}
-
 export const categoryDetails: Record<string, CategoryDetail> = {
   '1': {
     id: '1',
-    name: 'Digital Transformation Strategic Planning',
+    name: 'Strategy And Planning',
     categoryTag: 'Strategy & Planning',
     description: 'Develop Comprehensive Strategic Plans For Digital Transformation Aligned With Organizational Goals',
-    progress: 100,
+    progress: 97.78,
     evidence: {
       total: 4,
       underReview: 3,
@@ -706,6 +618,337 @@ export const categoryDetails: Record<string, CategoryDetail> = {
         role: 'Strategy Perspective',
         avatar: 'AA',
         email: 'ahmed.ali@company.com',
+      },
+      {
+        id: '2',
+        name: 'Sara Ibrahim',
+        role: 'Planning Lead',
+        avatar: 'SI',
+        email: 'sara.ibrahim@company.com',
+      },
+    ],
+  },
+  '2': {
+    id: '2',
+    name: 'Organization And Culture',
+    categoryTag: 'Organization & Culture',
+    description: 'Build A Digital-First Organizational Culture That Supports Innovation And Continuous Improvement',
+    progress: 70.83,
+    evidence: {
+      total: 5,
+      underReview: 2,
+      inProgress: 2,
+      completed: 1,
+    },
+    overview: {
+      objective: 'Establish A Digital Culture That Promotes Innovation, Collaboration, And Continuous Learning Across The Organization.',
+      implementationRequirements: 'Implement Organizational Culture Transformation Initiatives, Including: A. Digital Leadership Development Programs. B. Employee Training And Capacity Building. C. Change Management Strategies. D. Performance Measurement And Feedback Systems.',
+      evidenceDocuments: 'Submit Documentation Of Culture Transformation Activities, Training Records, And Performance Metrics.',
+      relatedRegulations: 'Human Resources Development Fund Regulations.',
+      scope: 'All Organizational Units And Employees.',
+    },
+    leaders: [
+      {
+        id: '1',
+        name: 'Mona Hamed',
+        role: 'Culture Lead',
+        avatar: 'MH',
+        email: 'mona.hamed@company.com',
+      },
+      {
+        id: '2',
+        name: 'Rami AlSharif',
+        role: 'Training Manager',
+        avatar: 'RA',
+        email: 'rami.alsharif@company.com',
+      },
+    ],
+  },
+  '3': {
+    id: '3',
+    name: 'Operations And Execution',
+    categoryTag: 'Operations & Execution',
+    description: 'Optimize Business Processes And Operational Efficiency Through Digital Solutions',
+    progress: 80.0,
+    evidence: {
+      total: 6,
+      underReview: 2,
+      inProgress: 3,
+      completed: 1,
+    },
+    overview: {
+      objective: 'Streamline Business Operations Through Digital Process Automation And Optimization.',
+      implementationRequirements: 'Redesign And Digitize Core Business Processes, Including: A. Process Mapping And Analysis. B. Automation Implementation. C. Performance Monitoring Systems. D. Continuous Improvement Mechanisms.',
+      evidenceDocuments: 'Submit Process Documentation, Automation Reports, And Performance Dashboards.',
+      relatedRegulations: 'Government Operations Efficiency Standards.',
+      scope: 'All Core Business Processes.',
+    },
+    leaders: [
+      {
+        id: '1',
+        name: 'Khalid Al-Mansouri',
+        role: 'Operations Manager',
+        avatar: 'KM',
+        email: 'khalid.mansouri@company.com',
+      },
+      {
+        id: '2',
+        name: 'Fatima Al-Zahra',
+        role: 'Process Analyst',
+        avatar: 'FZ',
+        email: 'fatima.zahra@company.com',
+      },
+    ],
+  },
+  '4': {
+    id: '4',
+    name: 'Business Continuity',
+    categoryTag: 'Business Continuity',
+    description: 'Ensure Organizational Resilience Through Comprehensive Risk Management And Continuity Planning',
+    progress: 90.59,
+    evidence: {
+      total: 7,
+      underReview: 1,
+      inProgress: 1,
+      completed: 5,
+    },
+    overview: {
+      objective: 'Maintain Business Continuity And Organizational Resilience Through Effective Risk Management.',
+      implementationRequirements: 'Develop And Implement Business Continuity Plans, Including: A. Risk Assessment And Mitigation Strategies. B. Disaster Recovery Procedures. C. Backup And Redundancy Systems. D. Regular Testing And Updates.',
+      evidenceDocuments: 'Submit Business Continuity Plans, Risk Assessments, And Test Results.',
+      relatedRegulations: 'Business Continuity Management Standards.',
+      scope: 'All Critical Business Functions.',
+    },
+    leaders: [
+      {
+        id: '1',
+        name: 'Omar Al-Rashid',
+        role: 'Risk Manager',
+        avatar: 'OR',
+        email: 'omar.rashid@company.com',
+      },
+      {
+        id: '2',
+        name: 'Layla Al-Mutairi',
+        role: 'Continuity Specialist',
+        avatar: 'LM',
+        email: 'layla.mutairi@company.com',
+      },
+    ],
+  },
+  '5': {
+    id: '5',
+    name: 'Information Technology',
+    categoryTag: 'Information Technology',
+    description: 'Build Robust IT Infrastructure And Support Systems For Digital Operations',
+    progress: 75.0,
+    evidence: {
+      total: 8,
+      underReview: 3,
+      inProgress: 2,
+      completed: 3,
+    },
+    overview: {
+      objective: 'Establish A Modern, Secure, And Scalable IT Infrastructure To Support Digital Transformation.',
+      implementationRequirements: 'Deploy IT Infrastructure And Support Systems, Including: A. Network Infrastructure Setup. B. Server And Storage Systems. C. Security And Compliance Measures. D. Cloud Infrastructure Integration.',
+      evidenceDocuments: 'Submit Infrastructure Documentation, Security Certifications, And System Architecture Diagrams.',
+      relatedRegulations: 'IT Infrastructure Standards And Cybersecurity Regulations.',
+      scope: 'All IT Systems And Infrastructure.',
+    },
+    leaders: [
+      {
+        id: '1',
+        name: 'Yusuf Al-Harbi',
+        role: 'IT Director',
+        avatar: 'YH',
+        email: 'yusuf.harbi@company.com',
+      },
+      {
+        id: '2',
+        name: 'Noura Al-Shehri',
+        role: 'Infrastructure Lead',
+        avatar: 'NS',
+        email: 'noura.shehri@company.com',
+      },
+    ],
+  },
+  '6': {
+    id: '6',
+    name: 'Comprehensive Governance',
+    categoryTag: 'Comprehensive Governance',
+    description: 'Implement Comprehensive Governance Frameworks For Digital Operations',
+    progress: 64.44,
+    evidence: {
+      total: 9,
+      underReview: 4,
+      inProgress: 2,
+      completed: 3,
+    },
+    overview: {
+      objective: 'Establish Comprehensive Governance Frameworks To Ensure Effective Digital Operations Management.',
+      implementationRequirements: 'Develop Governance Platforms And Frameworks, Including: A. Governance Structure And Policies. B. Compliance Monitoring Systems. C. Performance Management Tools. D. Stakeholder Engagement Mechanisms.',
+      evidenceDocuments: 'Submit Governance Documentation, Policy Frameworks, And Compliance Reports.',
+      relatedRegulations: 'Digital Governance Standards And Regulations.',
+      scope: 'All Governance Functions And Platforms.',
+    },
+    leaders: [
+      {
+        id: '1',
+        name: 'Hassan Al-Qahtani',
+        role: 'Governance Director',
+        avatar: 'HQ',
+        email: 'hassan.qahtani@company.com',
+      },
+      {
+        id: '2',
+        name: 'Amira Al-Dosari',
+        role: 'Compliance Manager',
+        avatar: 'AD',
+        email: 'amira.dosari@company.com',
+      },
+    ],
+  },
+  '7': {
+    id: '7',
+    name: 'Channels And Services',
+    categoryTag: 'Channels & Services',
+    description: 'Deliver High-Quality Digital Services Through Multiple Channels',
+    progress: 100.0,
+    evidence: {
+      total: 6,
+      underReview: 0,
+      inProgress: 0,
+      completed: 6,
+    },
+    overview: {
+      objective: 'Provide High-Quality Digital Services Through Multiple Channels To Meet Citizen And Business Needs.',
+      implementationRequirements: 'Develop And Deploy Digital Service Channels, Including: A. Service Quality Standards. B. Multi-Channel Service Delivery. C. User Experience Optimization. D. Service Performance Monitoring.',
+      evidenceDocuments: 'Submit Service Documentation, Quality Reports, And User Satisfaction Metrics.',
+      relatedRegulations: 'Digital Service Delivery Standards.',
+      scope: 'All Public-Facing Services And Channels.',
+    },
+    leaders: [
+      {
+        id: '1',
+        name: 'Zainab Al-Fahad',
+        role: 'Service Director',
+        avatar: 'ZF',
+        email: 'zainab.fahad@company.com',
+      },
+      {
+        id: '2',
+        name: 'Majed Al-Sulaimani',
+        role: 'Channel Manager',
+        avatar: 'MS',
+        email: 'majed.sulaimani@company.com',
+      },
+    ],
+  },
+  '8': {
+    id: '8',
+    name: 'Beneficiary Centralization',
+    categoryTag: 'Beneficiary Centralization',
+    description: 'Centralize Beneficiary Management And Engagement For Better Service Delivery',
+    progress: 60.0,
+    evidence: {
+      total: 5,
+      underReview: 2,
+      inProgress: 3,
+      completed: 0,
+    },
+    overview: {
+      objective: 'Centralize Beneficiary Management To Improve Service Delivery And User Experience.',
+      implementationRequirements: 'Implement Beneficiary Centralization Systems, Including: A. User Engagement Platforms. B. Relationship Management Systems. C. Experience Optimization Tools. D. Feedback And Analytics Systems.',
+      evidenceDocuments: 'Submit Beneficiary Management Documentation, Engagement Reports, And Experience Metrics.',
+      relatedRegulations: 'Customer Relationship Management Standards.',
+      scope: 'All Beneficiary Interactions And Services.',
+    },
+    leaders: [
+      {
+        id: '1',
+        name: 'Reem Al-Mutawa',
+        role: 'Engagement Manager',
+        avatar: 'RM',
+        email: 'reem.mutawa@company.com',
+      },
+      {
+        id: '2',
+        name: 'Faisal Al-Otaibi',
+        role: 'UX Lead',
+        avatar: 'FO',
+        email: 'faisal.otaibi@company.com',
+      },
+    ],
+  },
+  '9': {
+    id: '9',
+    name: 'Government Data',
+    categoryTag: 'Government Data',
+    description: 'Manage Government Data Effectively Through Governance, Usage, And Open Data Initiatives',
+    progress: 87.5,
+    evidence: {
+      total: 7,
+      underReview: 2,
+      inProgress: 2,
+      completed: 3,
+    },
+    overview: {
+      objective: 'Establish Effective Data Governance And Management To Support Data-Driven Decision Making.',
+      implementationRequirements: 'Implement Data Management Systems, Including: A. Data Governance Frameworks. B. Data Usage And Availability Platforms. C. Open Data Initiatives. D. Data Quality And Security Measures.',
+      evidenceDocuments: 'Submit Data Governance Documentation, Usage Reports, And Open Data Catalogs.',
+      relatedRegulations: 'Data Governance And Open Data Regulations.',
+      scope: 'All Government Data Assets.',
+    },
+    leaders: [
+      {
+        id: '1',
+        name: 'Salma Al-Ghamdi',
+        role: 'Data Director',
+        avatar: 'SG',
+        email: 'salma.ghamdi@company.com',
+      },
+      {
+        id: '2',
+        name: 'Tariq Al-Shammari',
+        role: 'Data Analyst',
+        avatar: 'TS',
+        email: 'tariq.shammari@company.com',
+      },
+    ],
+  },
+  '10': {
+    id: '10',
+    name: 'Research And Innovation',
+    categoryTag: 'Research & Innovation',
+    description: 'Foster Innovation And Creative Solutions Through Research And Development',
+    progress: 17.65,
+    evidence: {
+      total: 4,
+      underReview: 1,
+      inProgress: 2,
+      completed: 1,
+    },
+    overview: {
+      objective: 'Promote Innovation And Research To Drive Creative Solutions For Digital Transformation Challenges.',
+      implementationRequirements: 'Establish Innovation Programs And Research Initiatives, Including: A. Innovation Labs And Centers. B. Research And Development Projects. C. Creative Solution Development. D. Innovation Measurement And Evaluation.',
+      evidenceDocuments: 'Submit Innovation Documentation, Research Reports, And Solution Case Studies.',
+      relatedRegulations: 'Innovation And Research Development Standards.',
+      scope: 'All Innovation And Research Activities.',
+    },
+    leaders: [
+      {
+        id: '1',
+        name: 'Dina Al-Mazrouei',
+        role: 'Innovation Lead',
+        avatar: 'DM',
+        email: 'dina.mazrouei@company.com',
+      },
+      {
+        id: '2',
+        name: 'Waleed Al-Harbi',
+        role: 'Research Manager',
+        avatar: 'WH',
+        email: 'waleed.harbi@company.com',
       },
     ],
   },
@@ -750,14 +993,6 @@ export const evidenceTableHeaders: TableHeader[] = [
   { key: 'dueDate', label: 'Due Date' },
   { key: 'status', label: 'Status' },
 ];
-
-export interface Comment {
-  id: string;
-  name: string;
-  text: string;
-  date: string;
-  avatar: string;
-}
 
 export const comments: Comment[] = [
   {

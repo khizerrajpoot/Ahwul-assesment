@@ -19,25 +19,16 @@ const ellipseIcons = [Ellipse118, Ellipse119, Ellipse120];
 export const TopLeaders = ({ leaders }: TopLeadersProps) => {
   return (
     <div className="bg-white rounded-lg border border-gray-200 p-6">
-      <h3 
-        className="mb-4"
-        style={{
-          fontFamily: 'inherit',
-          fontWeight: 700,
-          fontSize: '16px',
-          color: '#1D3557',
-        }}
-      >
+      <h3 className="mb-4 text-[16px] font-bold text-[#1D3557]">
         Top Performing Perspective Leaders
       </h3>
       <div className="space-y-4">
         {leaders.map((leader, index) => (
           <div 
             key={leader.id} 
-            className="flex items-center gap-4 pb-4"
-            style={{
-              borderBottom: index < leaders.length - 1 ? '1px solid #E0E8ED' : 'none',
-            }}
+            className={`flex items-center gap-4 pb-4 ${
+              index < leaders.length - 1 ? 'border-b border-[#E0E8ED]' : ''
+            }`}
           >
             <div className="w-10 h-10 flex items-center justify-center flex-shrink-0">
               <img 
@@ -47,35 +38,14 @@ export const TopLeaders = ({ leaders }: TopLeadersProps) => {
               />
             </div>
             <div className="flex-1">
-              <div 
-                style={{
-                  fontFamily: 'fontfamily',
-                  fontWeight: 500,
-                  fontSize: '16px',
-                  color: '#1D3557',
-                }}
-              >
+              <div className="text-[16px] font-medium text-[#1D3557]" style={{ fontFamily: 'fontfamily' }}>
                 {leader.name}
               </div>
-              <div 
-                style={{
-                  fontFamily: 'fontfamily',
-                  fontWeight: 500,
-                  fontSize: '16px',
-                  color: '#8597A8',
-                }}
-              >
+              <div className="text-[16px] font-medium text-[#8597A8]" style={{ fontFamily: 'fontfamily' }}>
                 {leader.role}
               </div>
             </div>
-            <div 
-              style={{
-                fontFamily: 'Cairo, sans-serif',
-                fontWeight: 700,
-                fontSize: '16px',
-                color: '#1D3557',
-              }}
-            >
+            <div className="text-[16px] font-bold text-[#1D3557]" style={{ fontFamily: 'Cairo, sans-serif' }}>
               {leader.score}%
             </div>
           </div>

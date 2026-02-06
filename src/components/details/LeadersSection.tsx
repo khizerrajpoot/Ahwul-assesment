@@ -1,12 +1,5 @@
 import Ellipse118 from '../../assets/Ellipse 118.svg';
-
-interface Leader {
-  id: string;
-  name: string;
-  role: string;
-  avatar: string;
-  email: string;
-}
+import type { Leader } from '../../types';
 
 interface LeadersSectionProps {
   leaders: Leader[];
@@ -15,16 +8,13 @@ interface LeadersSectionProps {
 export const LeadersSection = ({ leaders }: LeadersSectionProps) => {
   return (
     <div className="mt-6">
-      <div className="bg-white rounded-lg border p-6" style={{ borderColor: '#E0E8ED' }}>
-        <h3 
-          className="text-lg font-bold mb-4"
-          style={{ color: '#1D3557' }}
-        >
+      <div className="bg-white rounded-lg border border-[#E0E8ED] p-6">
+        <h3 className="text-lg font-bold mb-4 text-[#1D3557]">
           Leaders
         </h3>
-        <div className="flex gap-4" style={{ maxWidth: '600px' }}>
+        <div className="flex gap-4 max-w-[600px]">
           {leaders.map((leader) => (
-            <div key={leader.id} className="flex items-center gap-3 p-4 flex-1" style={{ backgroundColor: '#F5F8FA', borderRadius: '10px' }}>
+            <div key={leader.id} className="flex items-center gap-3 p-4 flex-1 bg-[#F5F8FA] rounded-[10px]">
               <div className="w-12 h-12 flex-shrink-0">
                 <img 
                   src={Ellipse118} 
@@ -33,25 +23,10 @@ export const LeadersSection = ({ leaders }: LeadersSectionProps) => {
                 />
               </div>
               <div className="flex-1">
-                <div 
-                  className="mb-1"
-                  style={{ 
-                    color: '#1D3557',
-                    fontWeight: 500,
-                    fontSize: '14px',
-                    fontFamily: 'Cairo, sans-serif'
-                  }}
-                >
+                <div className="mb-1 text-[14px] font-medium text-[#1D3557]" style={{ fontFamily: 'Cairo, sans-serif' }}>
                   {leader.name}
                 </div>
-                <div 
-                  style={{ 
-                    color: '#8597A8',
-                    fontWeight: 500,
-                    fontSize: '14px',
-                    fontFamily: 'Cairo, sans-serif'
-                  }}
-                >
+                <div className="text-[14px] font-medium text-[#8597A8]" style={{ fontFamily: 'Cairo, sans-serif' }}>
                   {leader.role}
                 </div>
               </div>

@@ -1,4 +1,4 @@
-import type { TimelineItem } from '../../data/mockData';
+import type { TimelineItem } from '../../types';
 import { CheckCircle2, Circle, Clock } from 'lucide-react';
 
 interface TimelineProps {

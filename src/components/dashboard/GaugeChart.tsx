@@ -19,13 +19,7 @@ export const GaugeChart = ({ value, label, subLabel, color = '#ef4444', showCont
   const content = (
     <>
       {label && (
-        <h3 
-          className="mb-4 text-base sm:text-[17px] md:text-[17px] lg:text-[17px]" 
-          style={{
-            fontWeight: 700,
-            color: '#1D3557',
-          }}
-        >
+        <h3 className="mb-4 text-base sm:text-[17px] md:text-[17px] lg:text-[17px] font-bold text-[#1D3557]">
           {label}
         </h3>
       )}
@@ -50,36 +44,12 @@ export const GaugeChart = ({ value, label, subLabel, color = '#ef4444', showCont
             </Pie>
           </PieChart>
         </ResponsiveContainer>
-        <div 
-          className="absolute text-center"
-          style={{
-            bottom: '20px',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            width: '100%',
-          }}
-        >
-          <div 
-            style={{ 
-              color: '#1D3557',
-              fontFamily: 'inherit',
-              fontWeight: 700,
-              fontStyle: 'normal',
-              fontSize: '44px',
-              verticalAlign: 'middle',
-              textTransform: 'capitalize',
-            }}
-          >
+        <div className="absolute text-center bottom-5 left-1/2 -translate-x-1/2 w-full">
+          <div className="text-[44px] font-bold text-[#1D3557]">
             {value}%
           </div>
           {subLabel && (
-            <div 
-              className="text-xs sm:text-sm md:text-[14px] lg:text-[14px]"
-              style={{
-                color: '#8597A8',
-                fontWeight: 400,
-              }}
-            >
+            <div className="text-xs sm:text-sm md:text-[14px] lg:text-[14px] font-normal text-[#8597A8]">
               {subLabel}
             </div>
           )}

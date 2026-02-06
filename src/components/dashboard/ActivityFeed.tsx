@@ -1,4 +1,4 @@
-import type { Activity } from '../../data/mockData';
+import type { Activity } from '../../types';
 import { FileText, Eye, CheckCircle, Plus } from 'lucide-react';
 
 interface ActivityFeedProps {

@@ -1,4 +1,4 @@
-import type { Perspective } from '../../data/mockData';
+import type { Perspective } from '../../types';
 
 interface ProgressByPerspectiveProps {
   perspectives: Perspective[];

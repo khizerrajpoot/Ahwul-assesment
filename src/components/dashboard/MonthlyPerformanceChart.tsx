@@ -6,7 +6,7 @@ interface MonthlyPerformanceChartProps {
 
 export const MonthlyPerformanceChart = ({ data }: MonthlyPerformanceChartProps) => {
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-6" style={{ height: '410px' }}>
+    <div className="bg-white rounded-lg border border-gray-200 p-6 h-[410px]">
       <h3 className="text-lg font-semibold text-gray-900 mb-4">12-Month Performance</h3>
       <ResponsiveContainer width="100%" height={260}>
         <BarChart data={data}>
@@ -47,9 +47,7 @@ export const MonthlyPerformanceChart = ({ data }: MonthlyPerformanceChartProps) 
             dataKey="value"
             fill="url(#barGradient)"
             radius={[4, 4, 4, 4]}
-            style={{
-              filter: 'drop-shadow(0px 2px 4px rgba(0, 120, 215, 0.3))',
-            }}
+            className="drop-shadow-[0px_2px_4px_rgba(0,120,215,0.3)]"
           >
             {data.map((_entry, index) => (
               <Cell key={`cell-${index}`} />

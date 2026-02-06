@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Sidebar } from '../components/layout/Sidebar';
 import { Header } from '../components/layout/Header';
-import { progressCategories } from '../data/mockData';
+import { progressCategories, categoryDetails } from '../data/mockData';
 import DetailIcon from '../assets/detailicon.svg';
 import Detail1Icon from '../assets/detail1.svg';
 import Detail2Icon from '../assets/detail2.svg';
@@ -17,60 +17,44 @@ export const DetailsPage = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<'overview' | 'evidence'>('overview');
 
-  // Find category from progressCategories - only for the title
   const category = progressCategories.find(cat => cat.id === id);
-  
-  // Only the title is dynamic, everything else is hardcoded
-  const displayName = category?.name || 'Category Details';
-  
-  // Hardcoded values for all categories
-  const categoryTag = 'Strategy & Planning';
-  const description = 'Develop Comprehensive Strategic Plans For Digital Transformation Aligned With Organizational Goals';
-  const progress = 100;
-  const evidence = {
-    total: 4,
-    underReview: 3,
-    inProgress: 2,
-    completed: 1,
+  const categoryDetail = id ? categoryDetails[id] : null;
+  const displayName = category?.name || categoryDetail?.name || 'Category Details';
+  const categoryTag = categoryDetail?.categoryTag || 'Category';
+  const description = categoryDetail?.description || 'Category Description';
+  const progress = category?.progress || categoryDetail?.progress || 100;
+  const evidence = categoryDetail?.evidence || {
+    total: 0,
+    underReview: 0,
+    inProgress: 0,
+    completed: 0,
   };
-  const overview = {
-    objective: 'Develop A Digital Transformation Strategy Aligned With The Organization\'s Strategy And The Objectives Of Saudi Vision 2030.',
-    implementationRequirements: 'Prepare A Digital Transformation Strategy For The Transition To Electronic Government Transactions, Including The Following: A. The Organization\'s Vision, Mission, Strategic Pillars, And Strategic Objectives, And Their Alignment With The Organization\'s Overall Strategy. B. Strategic Initiatives, Programs, And Performance Indicators. C. A Clear Methodology For Integration And Coordination With Relevant External Entities To Achieve The Strategy\'s Objectives. D. Required Competencies, Capabilities, And Skills Necessary To Achieve The Strategy\'s Objectives.',
-    evidenceDocuments: 'Submit The Approved Digital Transformation Strategy That Includes All The Requirements Of This Standard, Provided That It Has Been Approved Within A Period Not Exceeding 36 Months.',
-    relatedRegulations: 'Council Of Ministers Resolution No. (40) Dated 27/2/1427H, Clause (16).',
-    scope: 'All Government Entities.',
+  const overview = categoryDetail?.overview || {
+    objective: 'Objective not available.',
+    implementationRequirements: 'Implementation requirements not available.',
+    evidenceDocuments: 'Evidence documents not available.',
+    relatedRegulations: 'Related regulations not available.',
+    scope: 'Scope not available.',
   };
-  const leaders = [
+  const leaders = categoryDetail?.leaders || [
     {
       id: '1',
-      name: 'Ahmed Al-Ali',
-      role: 'Strategy Perspective',
-      avatar: 'AA',
-      email: 'ahmed.ali@company.com',
-    },
-    {
-      id: '2',
-      name: 'Ahmed Al-Ali',
-      role: 'Strategy Perspective',
-      avatar: 'AA',
-      email: 'ahmed.ali@company.com',
+      name: 'No Leader Assigned',
+      role: 'N/A',
+      avatar: 'NA',
+      email: 'n/a@company.com',
     },
   ];
 
   return (
-    <div className="flex min-h-screen" style={{ backgroundColor: '#F5F8FB' }}>
-      {/* Sidebar */}
+    <div className="flex min-h-screen bg-[#F5F8FB]">
       <Sidebar />
 
-      {/* Main Content */}
       <div className="flex-1 flex flex-col">
-        {/* Header */}
         <Header />
 
-        {/* Details Content */}
         <div className="flex-1 p-6 overflow-y-auto">
           <div className="max-w-full">
-            {/* Top Header with Back Arrow, Title, and Progress */}
             <div className="mb-6">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-4">
@@ -80,73 +64,31 @@ export const DetailsPage = () => {
                   >
                     <img src={DetailIcon} alt="Back" className="w-5 h-5" />
                   </button>
-                  <h1 
-                    style={{ 
-                      color: '#1D3557',
-                      fontSize: '15px',
-                      fontFamily: 'Cairo, sans-serif',
-                      fontWeight: 700,
-                    }}
-                  >
+                  <h1 className="text-[15px] font-bold text-[#1D3557]" style={{ fontFamily: 'Cairo, sans-serif' }}>
                     {displayName}
                   </h1>
                 </div>
-             
               </div>
             </div>
             
-            {/* Card with Category Tag, Title, Description, and Progress */}
-            <div 
-              className="mb-2 p-4"
-              style={{
-                backgroundColor: '#FFFFFF',
-                borderColor: '#E0E8ED',
-                borderWidth: '1px',
-                borderRadius: '10px',
-              }}
-            >
+            <div className="mb-2 p-4 bg-white border border-[#E0E8ED] rounded-[10px]">
               <div className="flex items-center justify-between mb-2">
                 <div className="flex-1">
                   <div className="mb-3">
-                    <span 
-                      className="inline-block px-3 py-1"
-                      style={{
-                        backgroundColor: 'transparent',
-                        borderColor: '#E0E8ED',
-                        borderWidth: '1px',
-                        borderRadius: '30px',
-                        color: '#8597A8',
-                        fontWeight: 500,
-                        fontSize: '12px',
-                      }}
-                    >
+                    <span className="inline-block px-3 py-1 border border-[#E0E8ED] rounded-[30px] text-[12px] font-medium text-[#8597A8]">
                       {categoryTag}
                     </span>
                   </div>
-                  <h1 
-                    className="mb-2"
-                    style={{ 
-                      color: '#1D3557',
-                      fontSize: '15px',
-                      fontFamily: 'Cairo, sans-serif',
-                      fontWeight: 700,
-                    }}
-                  >
+                  <h1 className="mb-2 text-[15px] font-bold text-[#1D3557]" style={{ fontFamily: 'Cairo, sans-serif' }}>
                     {displayName}
                   </h1>
-                  <p 
-                    style={{ 
-                      color: '#8597A8',
-                      fontSize: '14px',
-                    }}
-                  >
+                  <p className="text-[14px] text-[#8597A8]">
                     {description}
                   </p>
                 </div>
                 <div className="flex-shrink-0 ml-4">
-                  <div className="relative" style={{ width: '120px', height: '120px' }}>
+                  <div className="relative w-[120px] h-[120px]">
                     <svg width="120" height="120" className="transform -rotate-90">
-                      {/* Background circle */}
                       <circle
                         cx="60"
                         cy="60"
@@ -155,7 +97,6 @@ export const DetailsPage = () => {
                         stroke="#E5E7EB"
                         strokeWidth="12"
                       />
-                      {/* Progress circle */}
                       <circle
                         cx="60"
                         cy="60"
@@ -168,16 +109,7 @@ export const DetailsPage = () => {
                         strokeLinecap="round"
                       />
                     </svg>
-                    {/* Percentage text */}
-                    <div 
-                      className="absolute inset-0 flex items-center justify-center"
-                      style={{
-                        color: '#1D3557',
-                        fontFamily: 'inherit',
-                        fontWeight: 700,
-                        fontSize: '24px',
-                      }}
-                    >
+                    <div className="absolute inset-0 flex items-center justify-center text-[18px] font-bold text-[#1D3557]">
                       {progress}%
                     </div>
                   </div>
@@ -185,56 +117,50 @@ export const DetailsPage = () => {
               </div>
             </div>
 
-            {/* Evidence Summary Cards */}
             <div className="mb-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-                {/* Total Evidence */}
-                <div className="bg-white rounded-lg border p-4" style={{ borderColor: '#E0E8ED', borderWidth: '1px' }}>
+                <div className="bg-white rounded-lg border border-[#E0E8ED] p-4">
                   <div className="flex items-start gap-3">
                     <img src={Detail1Icon} alt="Total Evidence" className="w-6 h-6 flex-shrink-0" />
                     <div className="flex-1">
-                      <div className="text-2xl font-bold mb-1" style={{ color: '#1D3557' }}>{evidence.total}</div>
-                      <div className="text-sm" style={{ color: '#8597A8' }}>Total Evidence</div>
+                      <div className="text-2xl font-bold mb-1 text-[#1D3557]">{evidence.total}</div>
+                      <div className="text-sm text-[#8597A8]">Total Evidence</div>
                     </div>
                   </div>
                 </div>
 
-                {/* Under Review Evidence */}
-                <div className="bg-white rounded-lg border p-4" style={{ borderColor: '#E0E8ED', borderWidth: '1px' }}>
+                <div className="bg-white rounded-lg border border-[#E0E8ED] p-4">
                   <div className="flex items-start gap-3">
                     <img src={Detail2Icon} alt="Under Review Evidence" className="w-6 h-6 flex-shrink-0" />
                     <div className="flex-1">
-                      <div className="text-2xl font-bold mb-1" style={{ color: '#1D3557' }}>{evidence.underReview}</div>
-                      <div className="text-sm" style={{ color: '#8597A8' }}>Under Review Evidence</div>
+                      <div className="text-2xl font-bold mb-1 text-[#1D3557]">{evidence.underReview}</div>
+                      <div className="text-sm text-[#8597A8]">Under Review Evidence</div>
                     </div>
                   </div>
                 </div>
 
-                {/* In Progress Evidence */}
-                <div className="bg-white rounded-lg border p-4" style={{ borderColor: '#E0E8ED', borderWidth: '1px' }}>
+                <div className="bg-white rounded-lg border border-[#E0E8ED] p-4">
                   <div className="flex items-start gap-3">
                     <img src={Detail3Icon} alt="In Progress Evidence" className="w-6 h-6 flex-shrink-0" />
                     <div className="flex-1">
-                      <div className="text-2xl font-bold mb-1" style={{ color: '#1D3557' }}>{evidence.inProgress}</div>
-                      <div className="text-sm" style={{ color: '#8597A8' }}>In Progress Evidence</div>
+                      <div className="text-2xl font-bold mb-1 text-[#1D3557]">{evidence.inProgress}</div>
+                      <div className="text-sm text-[#8597A8]">In Progress Evidence</div>
                     </div>
                   </div>
                 </div>
 
-                {/* Completed Evidence */}
-                <div className="bg-white rounded-lg border p-4" style={{ borderColor: '#E0E8ED', borderWidth: '1px' }}>
+                <div className="bg-white rounded-lg border border-[#E0E8ED] p-4">
                   <div className="flex items-start gap-3">
                     <img src={Detail4Icon} alt="Completed Evidence" className="w-6 h-6 flex-shrink-0" />
                     <div className="flex-1">
-                      <div className="text-2xl font-bold mb-1" style={{ color: '#1D3557' }}>{evidence.completed}</div>
-                      <div className="text-sm" style={{ color: '#8597A8' }}>Completed Evidence</div>
+                      <div className="text-2xl font-bold mb-1 text-[#1D3557]">{evidence.completed}</div>
+                      <div className="text-sm text-[#8597A8]">Completed Evidence</div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Tabs and Tab Content - Full Width */}
             <div className="w-auto">
               <TabButtons activeTab={activeTab} onTabChange={setActiveTab} />
 
