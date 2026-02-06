@@ -11,6 +11,8 @@ import type {
   CategoryDetail,
   Comment,
 } from '../types';
+import type { TimelineMilestone } from '../types/horizontalTimeline';
+import type { Category } from '../types/progressStatusGrid';
 
 export const dashboardStats: StatCard[] = [
   {
@@ -52,7 +54,7 @@ export const summaryCards = [
   { value: '258', label: 'Uploaded To DGA', icon: 'cards6.svg' },
 ];
 
-export const timelineMilestones = [
+export const timelineMilestones: TimelineMilestone[] = [
   { id: '1', date: 'Mar 17', title: 'Kickoff Workshop', status: 'completed' as const },
   { id: '2', date: 'March 18', title: 'Data Collection', status: 'completed' as const },
   { id: '3', date: 'May 8', title: 'Initial Phase', status: 'upcoming' as const },
@@ -226,7 +228,7 @@ export const chartData = [
   { name: 'Jun', value: 78 },
 ];
 
-export const progressCategories = [
+export const progressCategories: Category[] = [
   {
     id: '1',
     name: 'Strategy And Planning',

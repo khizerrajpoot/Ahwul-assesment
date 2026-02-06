@@ -1,17 +1,6 @@
 import { ChevronDown } from 'lucide-react';
 import { useRef, useEffect, useState } from 'react';
-
-interface TimelineMilestone {
-  id: string;
-  date: string;
-  title: string;
-  status: 'completed' | 'upcoming';
-}
-
-interface HorizontalTimelineProps {
-  milestones: TimelineMilestone[];
-  year?: number;
-}
+import type { HorizontalTimelineProps } from '../../types/horizontalTimeline';
 
 export const HorizontalTimeline = ({ milestones, year = 2026 }: HorizontalTimelineProps) => {
   const labelRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -25,18 +14,11 @@ export const HorizontalTimeline = ({ milestones, year = 2026 }: HorizontalTimeli
       const isMobile = window.innerWidth < 640;
       const isTablet = window.innerWidth >= 640 && window.innerWidth < 1024;
       
-      const positions = labelRefs.current.map((ref, index) => {
+      const positions = labelRefs.current.map((ref) => {
         if (ref) {
           const labelRect = ref.getBoundingClientRect();
           const labelCenter = labelRect.left + labelRect.width / 2;
           let relativePosition = ((labelCenter - barRect.left) / barRect.width) * 100;
-          
-          if (index === 0) {
-            relativePosition += 1.5;
-          }
-          else if (index === milestones.length - 1) {
-            relativePosition -= 2;
-          }
           
           return Math.max(0, Math.min(100, relativePosition));
         }

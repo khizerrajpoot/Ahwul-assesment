@@ -1,27 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { StatusCircle } from '../shared/StatusCircle';
-
-interface StatusItem {
-    number: number;
-    status: 'not-started' | 'in-progress' | 'completed' | 'partially-uploaded' | 'fully-uploaded' | 'delayed';
-}
-
-interface SubCategory {
-    id: string;
-    name: string;
-    items: StatusItem[];
-}
-
-interface Category {
-    id: string;
-    name: string;
-    progress: number;
-    subCategories: SubCategory[];
-}
-
-interface ProgressStatusGridProps {
-    categories: Category[];
-}
+import type { ProgressStatusGridProps } from '../../types/progressStatusGrid';
 
 export const ProgressStatusGrid = ({ categories }: ProgressStatusGridProps) => {
     const navigate = useNavigate();
@@ -74,10 +53,10 @@ export const ProgressStatusGrid = ({ categories }: ProgressStatusGridProps) => {
                                 className="rounded-[10px] p-3 sm:p-4 flex flex-col cursor-pointer hover:opacity-90 transition-opacity bg-[#1D3557] text-white h-20 min-h-[110px]"
                                 onClick={() => handleCategoryClick(category.id)}
                             >
-                                <h3 className="text-[10px] sm:text-xs font-medium mb-2 sm:mb-3 flex-1 text-center leading-4 text-white">
+                                <h3 className="text-[12px] font-medium text-center leading-4 text-white">
                                     {category.name}
                                 </h3>
-                                <div className="px-2 py-1 mt-auto mx-auto bg-[#FFFFFF1A] text-white w-fit rounded-[10px]">
+                                <div className="px-2 mt-auto mx-auto bg-[#FFFFFF1A] text-white w-fit rounded-[10px]">
                                     <span className="text-[10px] sm:text-xs font-medium">
                                         {category.progress === 100 ? '100%' : category.progress.toFixed(2) + '%'}
                                     </span>
@@ -89,20 +68,20 @@ export const ProgressStatusGrid = ({ categories }: ProgressStatusGridProps) => {
             </div>
 
             <div className="mt-6 overflow-x-auto -mx-4 sm:-mx-6 px-4 sm:px-6">
-                <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-10 gap-3 min-w-max sm:min-w-0 items-start">
+                <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-10 gap-3 min-w-max sm:min-w-0 items-start ">
                     {categories.map((category) => (
                         <div
                             key={category.id}
-                            className="flex flex-col gap-3 flex-shrink-0 sm:flex-shrink w-[140px] sm:w-auto"
+                            className="flex flex-col gap-3 flex-shrink-0 sm:flex-shrink w-[140px] sm:w-auto h-full"
                         >
                             {category.subCategories.map((subCat) => (
                                 <div
                                     key={subCat.id}
-                                    className={`bg-white rounded-lg border border-[#E0E8ED] p-3 sm:p-4 flex flex-col justify-between ${
+                                    className={`bg-white rounded-lg border border-[#E0E8ED] sm:p-4 flex flex-col justify-between ${
                                         (subCat.name === 'Business Processes' || subCat.name === 'Governance Platforms') 
-                                            ? 'min-h-[49vh]' 
+                                            ? 'h-full' 
                                             : (subCat.name === 'Risk Management' || subCat.name === 'Business Continuity' || subCat.name === 'Service Quality' || subCat.name === 'Digital Channels' || subCat.name === 'Innovation' || subCat.name === 'Creative Solutions')
-                                            ? 'min-h-[24.5vh]'
+                                            ? 'h-[50%]'
                                             : 'min-h-[130px]'
                                     }`}
                                 >
@@ -110,11 +89,13 @@ export const ProgressStatusGrid = ({ categories }: ProgressStatusGridProps) => {
                                         {subCat.name}
                                     </div>
                                     <div 
-                                        className="gap-2"
+                                        className="gap-2 justify-center"
                                         style={{
                                             display: 'grid',
                                             gridTemplateColumns: subCat.name === 'Support Systems'
-                                                ? 'repeat(3, 1fr)'
+                                                ? 'repeat(3, 1fr)' :
+                                                subCat.name === 'Service Quality' 
+                                                ?'repeat(2, 1fr)' 
                                                 : subCat.items.length === 3 
                                                 ? 'repeat(3, 1fr)' 
                                                 : subCat.items.length === 4 
