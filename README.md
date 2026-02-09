@@ -43,6 +43,34 @@ The production build will be in the `dist` directory.
 npm run preview
 ```
 
+## 🌐 Deployment
+
+### Deploy to Vercel (Recommended)
+
+The easiest way to deploy this application is using Vercel:
+
+1. **Via Vercel Dashboard (Easiest)**:
+   - Go to [vercel.com](https://vercel.com) and sign up/login
+   - Click "Add New Project"
+   - Import your GitHub repository: `https://github.com/khizerrajpoot/Ahwul-assesment`
+   - Vercel will automatically detect Vite settings
+   - Click "Deploy"
+   - Your app will be live in minutes!
+
+2. **Via Vercel CLI**:
+   ```bash
+   npx vercel
+   ```
+   Follow the prompts to deploy.
+
+The `vercel.json` configuration file is already included in the project for optimal deployment settings.
+
+### Other Deployment Options
+
+- **Netlify**: Similar to Vercel, connect your GitHub repo at [netlify.com](https://netlify.com)
+- **GitHub Pages**: Requires additional configuration for SPA routing
+- **Any static hosting**: Build the project with `npm run build` and upload the `dist` folder
+
 ## 📁 Project Structure
 
 ```
